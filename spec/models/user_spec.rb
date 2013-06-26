@@ -1,4 +1,3 @@
-# require_relative 'cookie'
 require 'spec_helper'
  
 describe User do
@@ -6,14 +5,68 @@ describe User do
   let(:name)   { "Tom Jones" }
   let(:email)   { "tom@jones.com" }
   let(:password)   { "tomtom" }
-  let(:user) { User.new(name: name, email: email, password: password) }
+  let(:user) { user1 = User.create(name: name, 
+                               email: email)
+               user1.password = password
+               user1.password_confirmation = password
+               user1.save
+               user1
+             }
+
  
   describe "#initialize" do
-    context "with valid input" do
+    it "requires a name" do
+      expect(User.new(email:email, 
+                       password: password,
+                       password_confirmation: password).valid?).to be_false
+    end
+
+    it "requires a valid email" do
+      expect(User.new(name: name,
+                      email: "hi!", 
+                      password: password,
+                      password_confirmation: password).valid?).to be_false
+    end
+
+    it "requires a valid password" do
+      expect(User.new(name: name,
+                      email: email, 
+                      password: "p",
+                      password_confirmation: "p").valid?).to be_false
+    end
+
+    it "requires password to match password_confirmation" do
+      expect(User.new(name: name,
+                      email: email, 
+                      password: password,
+                      password_confirmation: "123456").valid?).to be_false
+    end
+
+    it "has a name" do
+      expect(user.name).to_not be_nil
+    end
+
+    it "sets the name to the name passed in on initialize" do
+      expect(user.name).to eq name
+    end
+
+    it "has an email" do
+      expect(user.email).to_not be_nil
+    end
+
+    it "sets the email to the email passed in on initialize" do
+      expect(user.email).to eq email
+    end
+
+    context "with valid password" do
+      it "authenticates the user" do
+        expect(user.authenticate(password)).to be user
       end
     end
- 
-    context "with invalid input" do
+
+    context "with incorrect password" do
+      it "does not authenticate the user" do
+        expect(user.authenticate("incorrect_password")).to be_false
       end
     end
   end
