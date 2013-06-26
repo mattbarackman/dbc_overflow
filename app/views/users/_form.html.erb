@@ -1,0 +1,14 @@
+<% if flash[:errors] %>
+  <div class="errors">
+    <% flash[:errors].each do |error| %>
+      <p> <%= error %> </p> 
+    <% end %> 
+  </div>
+<% end %>
+<%= form_for @user do |f| %>
+  <%= f.text_field :name %><br>
+  <%= f.text_field :email %><br>
+  <%= f.password_field :password %><br>
+  <%= f.password_field :password_confirmation %><br>
+  <%= f.submit %>
+<% end %>
