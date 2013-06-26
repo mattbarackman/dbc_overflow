@@ -8,8 +8,8 @@ describe Question do
   let(:question) {Question.new(title: title, content: content, user_id: bob.id)}
 
   describe "#index" do
-    it "should return all questions related to user from database" do
-      visit '/users/1/questions'
+    it "should return all questions related to user from database", js:true do
+      visit questions_path
       expect(page).to have_content question.title
     end
   end      
