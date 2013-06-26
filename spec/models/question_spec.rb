@@ -2,45 +2,24 @@ require "spec_helper"
 
 describe Question do
 
-  let(:title)   {"What is this crazy EE thing here at DBC?"}
-  let(:content) {"I've heard a lot about it but don't really understand what is covered"}
-  let(:bob) {mock(:user, :name=>"Bob Marley", :id=> 1)}
-  let(:question) {Question.new(title: title, content: content, user_id: bob.id)}
+  it "has a title upon initialization" do
+    pending
+  end
 
-  describe "#index" do
-    it "should return all questions related to user from database", js:true do
-      visit questions_path
-      expect(page).to have_content question.title
-    end
-  end      
+  it "does not have duplicate title" do
+    pending
+  end
 
+  it "has a user associated to each question" do
+    pending
+  end
 
-change
-change
+  it "has a tag" do
+    pending
+  end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  it "can have multiple tags" do
+    pending
+  end
 
 end

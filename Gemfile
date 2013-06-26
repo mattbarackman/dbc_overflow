@@ -27,6 +27,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'debugger'
 end
 
 group :development do
@@ -34,6 +35,7 @@ group :development do
 end
 
 gem 'jquery-rails'
+gem 'sextant'
 
 group :production do
   gem 'thin'
