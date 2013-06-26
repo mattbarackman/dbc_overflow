@@ -1,0 +1,8 @@
+
+development:
+  adapter: postgresql
+  database: dbc_overflow_development
+
+test:
+  adapter: postgresql
+  database: dbc_overflow_test
