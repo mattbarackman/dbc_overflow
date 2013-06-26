@@ -1,8 +1,10 @@
 DbcOverflow::Application.routes.draw do
   
   resources :users do
-    resources :questions
+    resources :questions, :except => [:show, :index]
   end
+
+  resources :questions, :only => [:show, :index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
