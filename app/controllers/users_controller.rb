@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "Welcome to DBC Overflow!"
+      sign_in(@user)
       redirect_to user_path(@user.id)
       # redirect_to @user
     else
