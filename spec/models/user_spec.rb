@@ -1,4 +1,5 @@
 # require_relative 'cookie'
+require 'spec_helper'
  
 describe User do
  
