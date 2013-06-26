@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(:version => 20130626175118) do
   create_table "questions", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
