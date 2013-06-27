@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :questions
+
   attr_accessible :name, :email, :password, :password_confirmation
 
   validates :name, :presence => true

@@ -1,5 +1,6 @@
 <nav>
-  <%= link_to "Sign Up", signup_path unless current_user%>
-  <%= link_to "Sign In", signin_path unless current_user%>
+  <%= link_to 'DBC HOME BRO', root_path %>
+  <%= link_to "Sign Up", signup_path unless current_user %>
+  <%= link_to "Sign In", signin_path unless current_user %>
   <%= link_to "Sign Out", signout_path, method: "delete" if current_user%>
 </nav>

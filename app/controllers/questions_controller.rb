@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
 
-  before_filter :temporarily_load_user
+  before_filter :load_current_user
+  # before_filter :authorize, :except => [:index, :show]
 
   def index
     @questions = Question.all
@@ -12,6 +13,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(params[:question])
+    @question.user_id = params[:user_id]
     if @question.save
       redirect_to question_path(@question)
     else
@@ -41,9 +43,14 @@ class QuestionsController < ApplicationController
 
   private
 
-  def temporarily_load_user
-    @user = User.last
+  def load_current_user
+    @user = current_user
   end
 
-
+  def authorize
+    unless @user == current_user
+      redirect_to root_path
+      flash[:error] = "not authorized user"
+    end
+  end
 end

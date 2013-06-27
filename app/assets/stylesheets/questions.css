@@ -1,0 +1,28 @@
+#main_title{
+  width: 300px;
+  margin: 0 auto;
+  font-size: 35px;
+  text-align: center;
+}
+
+.homepage_titles{
+  font-size: 19px;
+  margin: 10px auto;
+  background-color: #ddd;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  padding: 5px;
+  width: 300px;
+  text-align: center;
+
+}
+
+.homepage_titles a{
+  text-decoration: none;
+  color: #222;
+}
+
+.homepage_titles:hover{
+  background-color: #888;
+  cursor: pointer;
+}
