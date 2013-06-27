@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :require_user, only: [:edit, :update, :destroy]
+
   def index
   end
 
@@ -13,7 +15,6 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to DBC Overflow!"
       sign_in(@user)
       redirect_to user_path(@user.id)
-      # redirect_to @user
     else
       flash[:errors] = @user.errors.full_messages
       render :new
@@ -43,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    sign_out
     User.destroy(params[:id])
     redirect_to new_user_path
   end
