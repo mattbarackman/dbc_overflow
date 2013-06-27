@@ -1,3 +1,5 @@
+# REVIEW: please don't commit commented code
+
 # require 'spec_helper'
 
 # describe UsersController do

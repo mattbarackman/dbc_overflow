@@ -1,11 +1,13 @@
+# REVIEW: awesome job!
 require 'spec_helper'
 
 describe SessionsController do
-  
+
   describe "the signin process", :js => true, :type => :feature do
     before :each do
+      # REVIEW: why aren't you using factory girl?
       User.create(:name => 'maria',
-                :email => 'maria@maria.com', 
+                :email => 'maria@maria.com',
                 :password => 'mariamaria',
                 :password_confirmation => 'mariamaria')
     end
@@ -35,8 +37,9 @@ describe SessionsController do
 
   describe "the signout process", :js => true, :type => :feature do
     before :each do
+      # REVIEW: this is not DRY, you're repeating yourself from line 8.
       User.create(:name => 'maria',
-                :email => 'maria@maria.com', 
+                :email => 'maria@maria.com',
                 :password => 'mariamaria',
                 :password_confirmation => 'mariamaria')
     end

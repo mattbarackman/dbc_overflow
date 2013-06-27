@@ -1,11 +1,11 @@
 require 'spec_helper'
- 
+
 describe User do
- 
+
   let(:name)   { "Tom Jones" }
   let(:email)   { "tom@jones.com" }
   let(:password)   { "tomtom" }
-  let(:user) { user1 = User.create(name: name, 
+  let(:user) { user1 = User.create(name: name,
                                email: email)
                user1.password = password
                user1.password_confirmation = password
@@ -13,31 +13,32 @@ describe User do
                user1
              }
 
- 
+
   describe "#initialize" do
+    #REVIEW: if you use shoulda, testing validation will be much easier.
     it "requires a name" do
-      expect(User.new(email:email, 
+      expect(User.new(email:email,
                        password: password,
                        password_confirmation: password).valid?).to be_false
     end
 
     it "requires a valid email" do
       expect(User.new(name: name,
-                      email: "hi!", 
+                      email: "hi!",
                       password: password,
                       password_confirmation: password).valid?).to be_false
     end
 
     it "requires a valid password" do
       expect(User.new(name: name,
-                      email: email, 
+                      email: email,
                       password: "p",
                       password_confirmation: "p").valid?).to be_false
     end
 
     it "requires password to match password_confirmation" do
       expect(User.new(name: name,
-                      email: email, 
+                      email: email,
                       password: password,
                       password_confirmation: "123456").valid?).to be_false
     end
@@ -70,5 +71,5 @@ describe User do
       end
     end
   end
- 
+
 end

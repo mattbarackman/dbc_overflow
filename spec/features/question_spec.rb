@@ -1,3 +1,4 @@
+# REVIEW: please don't commit commented code
 # require "spec_helper"
 
 # describe 'Question' do
@@ -5,7 +6,7 @@
 #  question = FactoryGirl.create(:question)
 
 #   describe "#index" do
-    
+
 #     before do
 #       question
 #     end
@@ -24,5 +25,5 @@
 #       visit root_path
 #       expect(page).to_not have_link('delete')
 #     end
-#   end      
+#   end
 # end

@@ -4,8 +4,9 @@ describe UsersController do
 
   describe "the signup process", :js => true, :type => :feature do
     before :each do
+      # REVIEW: factory girl?
       User.create(:name => 'maria',
-        :email => 'maria@maria.com', 
+        :email => 'maria@maria.com',
         :password => 'mariamaria',
         :password_confirmation => 'mariamaria')
     end

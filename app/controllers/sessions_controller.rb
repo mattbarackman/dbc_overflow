@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:session][:email])
+    # REVIEW: this assignment is confusing, why not user.authenticate(params[:session][:password])?
     password = params[:session][:password]
     if user && user.authenticate(password)
       sign_in(user)
@@ -19,6 +20,6 @@ class SessionsController < ApplicationController
     sign_out
     flash[:success] = ["You just signed out."]
     redirect_to new_session_path
-  end  
+  end
 
 end
