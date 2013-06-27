@@ -172,6 +172,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   selenium-webdriver
-  thin
   sextant
+  thin
   uglifier (>= 1.0.3)

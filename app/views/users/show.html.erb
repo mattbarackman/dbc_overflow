@@ -1,5 +1,8 @@
-<h2>Your Profile</h2>
-<%= @user.name %><br> 
 
-<%= link_to "Edit", edit_user_path %>
-<%= link_to "Delete", user_path, :method => "delete" %>
+<div class="user_form">
+<h2>Your Profile</h2>
+  <%= @user.name %><br> 
+
+  <%= link_to "Edit", edit_user_path %>
+  <%= link_to "Delete", user_path, :method => "delete" %>
+</div>

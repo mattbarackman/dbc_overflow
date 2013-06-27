@@ -1,11 +1,12 @@
+<div class="user_form">
+
 <%=form_for [@user, @question] do |f|%>
 
-  <%= f.label :title %>:
-  <%= f.text_field :title %>
+  <%= f.text_field :title, placeholder: "title" %>
 
-  <%= f.label :content %>:
-  <%= f.text_field :content %>
+  <%= f.text_field :content, placeholder: "content" %>
 
   <%= f.submit %>
 <%end%>   
 
+</div>
