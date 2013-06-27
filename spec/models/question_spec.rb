@@ -1,13 +1,17 @@
 require "spec_helper"
 
 describe Question do
+  
+  question = FactoryGirl.create(:question)
+  question2 = FactoryGirl.build(:question)
 
   it "has a title upon initialization" do
-    pending
+    expect(question.title).to eq('EE hurts your soul.')
   end
 
   it "does not have duplicate title" do
-    pending
+    question2.save
+    question2.id == nil
   end
 
   it "has a user associated to each question" do
