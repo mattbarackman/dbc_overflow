@@ -2,9 +2,9 @@
   <div id='header'><%= link_to 'DBC HOME BRO', root_path %></div>
   <%= link_to "Sign Up", signup_path unless current_user %>
   <%= link_to "Sign In", signin_path unless current_user %>
-  <%= link_to "Profile", user_path(@user) if current_user %>
+  <%= link_to "Profile", user_path(current_user) if current_user %>
   <%= link_to "Sign Out", signout_path, method: "delete" if current_user%>
-    <%= link_to 'New post', new_user_question_path(@user) if current_user %>
-  <%= link_to 'Edit post', edit_user_question_path(@user, @question) if @question && owner(@question)%>
-  <%= link_to 'Delete post', user_question_path(@user, @question), method: :delete if @question && owner(@question)%>
+    <%= link_to 'New post', new_question_path if current_user %>
+  <%#= link_to 'Edit post', edit_user_question_path(@user, @question) if @question && owner(@question)%>
+  <%#= link_to 'Delete post', user_question_path(@user, @question), method: :delete if @question && owner(@question)%>
 </nav>

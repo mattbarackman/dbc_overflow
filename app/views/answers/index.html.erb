@@ -1,0 +1,12 @@
+
+
+Question Title : <%= @question.title %></br>
+Question Content: <%= @question.content %></br>
+</br>
+<% @question.answers.each do |answer| %>
+    <div> <%= answer.content %></div>
+    </br>
+<% end %>
+
+
+

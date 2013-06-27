@@ -1,11 +1,10 @@
 DbcOverflow::Application.routes.draw do
   
-  resources :users do
-    resources :questions, :except => [:show, :index]
+  resources :users
+
+  resources :questions, :only => [:new, :create, :show, :index] do
+    resources :answers, :only => [:show, :index, :new, :create]
   end
-
-  resources :questions, :only => [:show, :index]
-
   
   resources :sessions, :only => [:new, :create, :destroy]
 
