@@ -1,28 +1,26 @@
-# require "spec_helper"
+require "spec_helper"
 
-# describe 'Question' do
+describe 'Question' do
 
-#  question = FactoryGirl.create(:question)
+ let (:question) {Question.create(title: "hello world3", content: "sdjkhfsdkjhs" )}
 
-#   describe "#index" do
-    
-#     before do
-#       question
-#     end
+  describe "#index", :js => true do
 
-#     it "should return all questions related to user from database" do
-#       visit root_path
-#       expect(page).to have_content question.title
-#     end
+    it "shows recent questions" do
+      question
+      visit root_path
+      sleep(10)
+      expect(page).to have_content question.title
+    end
 
-#     it "should not have edit links" do
-#       visit root_path
-#       expect(page).to_not have_link('edit')
-#     end
+    it "should not have edit links" do
+      visit root_path
+      expect(page).to_not have_link('edit')
+    end
 
-#     it "should not have delete links" do
-#       visit root_path
-#       expect(page).to_not have_link('delete')
-#     end
-#   end      
-# end
+    it "should not have delete links" do
+      visit root_path
+      expect(page).to_not have_link('delete')
+    end
+  end      
+end
