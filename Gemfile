@@ -30,7 +30,10 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'debugger'
   gem 'faker'
+<<<<<<< HEAD
 
+=======
+>>>>>>> modified a lot of stuff, added controller for votes models for votes and a bunch of factories. working on cleaning up the test suite
 end
 
 group :development do

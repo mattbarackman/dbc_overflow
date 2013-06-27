@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
+  has_many :votes
 
   attr_accessible :name, :email, :password, :password_confirmation
 
@@ -14,4 +15,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def upvote!(question)
+    self.votes.create(:question_id => question.id)
+  end
 end

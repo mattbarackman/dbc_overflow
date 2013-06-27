@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20130627180908) do
     t.datetime "updated_at",  :null => false
   end
 
+ActiveRecord::Schema.define(:version => 20130627182608) do
+
   create_table "questions", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -33,6 +35,13 @@ ActiveRecord::Schema.define(:version => 20130627180908) do
     t.string "name",            :null => false
     t.string "email",           :null => false
     t.string "password_digest", :null => false
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
