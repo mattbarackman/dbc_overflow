@@ -7,6 +7,7 @@ DbcOverflow::Application.routes.draw do
   end
   
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :votes, :only => [:create]
 
   match "/signup", to: "users#new"
   match "/signin", to: "sessions#new"

@@ -3,7 +3,20 @@
 
     <div id="homepage_title_container">
       <% @questions.each do |question| %>
-        <div class="homepage_titles"><%= link_to question.title, question_path(question) %></div>
+        <div class="voting">
+          <% if current_user %>
+          <%= form_for(current_user.votes.build(:question_id => question.id), remote: true) do |f| %>
+          <%= f.hidden_field :question_id, value: question.id %>
+          <%= f.submit "Upvote!", :class => "upvote" %>
+          <% end %>
+          <% end %>
+        </div>
+        <div class="votes">
+          <%= question.votes.count %>
+        </div>
+        <div class="homepage_titles">
+          <%= link_to question.title, question_path(question) %>
+        </div>
       <%end%>
     </div>
   </div>

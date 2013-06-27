@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+$(document).ready(function(){
+  $('.upvote').on('click', function upvotePost(e){
+    var voteCount = parseInt($('.votes').html());
+    $('.votes').replaceWith(voteCount+=1);
+  });
+});

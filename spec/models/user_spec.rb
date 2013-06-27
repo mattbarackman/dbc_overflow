@@ -86,6 +86,10 @@ describe User do
       end
     end
 
+    # context "downvote" do
+    #   it "should decrease the user's vote count" do
+    #     expect { other_user.downvote!(question) }.to change{user.votes.count}.by(1)
+    #   end
+    # end
   end
- 
 end
