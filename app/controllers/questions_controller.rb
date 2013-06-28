@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
   before_filter :load_current_user
-  # before_filter :authorize, :except => [:index, :show]
+  before_filter :authorize, :except => [:index, :show]
 
   def index
     @questions = Question.all
@@ -13,8 +13,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(params[:question])
-    @question.user_id = params[:user_id]
+    @question.user_id = current_user.id
     if @question.save
+      debugger
       redirect_to question_path(@question)
     else
       render :new

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  def upvote!(question)
-    self.votes.create(:question_id => question.id)
+  def upvote!(input)
+    self.votes.create(:voteable_id => input.id, :voteable_type => input.class.to_s)
   end
 end
