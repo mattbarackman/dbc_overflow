@@ -1,12 +1,16 @@
 class VotesController < ApplicationController
 
-  before_filter :require_login
 
   def create
-    @question = Question.find(params[:vote][:question_id])
-    current_user.upvote!(@question)
+    @resource = params[:vote][:resource]
+    if @resource == "Answer"
+      @record = Answer.find(params[:vote][:id])
+    else
+      @record = Question.find(params[:vote][:id])
+    end
+    current_user.upvote!(@record)
     respond_to do |format|
-      format.json  { render :json => @question.votes.count }
+      format.json  { render :json => @record.votes.count }
     end
   end
 end

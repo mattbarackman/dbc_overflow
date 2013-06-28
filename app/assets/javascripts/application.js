@@ -18,6 +18,6 @@
 $(document).ready(function(){
   $('.upvote').on('click', function upvotePost(e){
     var voteCount = parseInt($('.votes').html());
-    $('.votes').replaceWith(voteCount+=1);
+    $(this).parent().parent().next('.votes').replaceWith(voteCount+=1);
   });
 });

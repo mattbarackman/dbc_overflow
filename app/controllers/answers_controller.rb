@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
 
+  before_filter :require_user, :only => [:new, :create]
+
   def new
     p params
     p session[:user_id]
@@ -17,6 +19,7 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(params[:answer])
     @question = Question.find(params[:question_id])
+    @answer.user_id = current_user.id
     @answer.question = @question
     if @answer.save
       redirect_to question_answers_path(@question)
