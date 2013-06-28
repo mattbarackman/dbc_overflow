@@ -15,7 +15,6 @@ class QuestionsController < ApplicationController
     @question = Question.new(params[:question])
     @question.user_id = current_user.id
     if @question.save
-      debugger
       redirect_to question_path(@question)
     else
       render :new
