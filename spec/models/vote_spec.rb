@@ -6,7 +6,7 @@ describe Vote do
   let(:question) { FactoryGirl.create(:question) }
 
   before(:each) do
-    @vote = user.votes.build(:question_id => question.id, :user_id => user.id, :question_id => question.id)
+    @vote = user.votes.build(:voteable_id => question.id, voteable_type: "Question", :user_id => user.id)
   end
 
   describe "attributes" do
@@ -15,8 +15,8 @@ describe Vote do
       expect(@vote).to respond_to(:user)
     end
 
-    it "should respond to question" do
-      expect(@vote).to respond_to(:question)
+    it "should respond to voteable" do
+      expect(@vote).to respond_to(:voteable)
     end
 
   end

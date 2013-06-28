@@ -30,6 +30,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'debugger'
   gem 'faker'
+  gem 'shoulda-matchers'
 end
 
 group :development do

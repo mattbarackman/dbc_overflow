@@ -19,7 +19,10 @@ describe Answer do
   end
 
   describe "associations" do
-    subject { answer }
-    it { should belong_to(:question) }
+    # it "should belong to question" do
+    #   t = Answer.reflect_on_association(:question)
+    #   t.macro.should == :belongs_to 
+    # end
+    it { should belong_to(:question)}
   end
 end

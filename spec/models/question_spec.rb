@@ -2,10 +2,11 @@ require "spec_helper"
 
 describe Question do
   
-  question = FactoryGirl.create(:question)
+  question = FactoryGirl.create(:question, title: "EE hurts your soul.")
   question2 = FactoryGirl.build(:question)
 
   it "has a title upon initialization" do
+    p question
     expect(question.title).to eq('EE hurts your soul.')
   end
 

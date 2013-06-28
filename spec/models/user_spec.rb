@@ -78,6 +78,7 @@ describe User do
     context "upvote" do
       
       it "should increase the users vote count" do
+        p question
         expect{ other_user.upvote!(question)}.to change{other_user.votes.count}.from(0).to(1)
       end
 

@@ -4,4 +4,6 @@ class Answer < ActiveRecord::Base
   has_many :votes, as: :voteable
   attr_accessible :content
 
+  validates :content, :presence => true 
+
 end
