@@ -1,0 +1,12 @@
+<div class="voting">
+  <% if current_user %>
+
+    <%= link_to votes_path(voteable_id: voteable.id, voteable_type: voteable.class, value: 1), :remote=>true, :method=> 'post', :class => "vote" do %>
+      <i class="icon-thumbs-up icon-3x"></i> 
+    <% end %>
+    <div class="votecount"><%= voteable.sum_votes %></div>
+    <%= link_to votes_path(voteable_id: voteable.id, voteable_type: voteable.class, value: -1), :remote=>true, :method=> 'post', :class => "vote" do %>
+      <i class="icon-thumbs-down icon-3x"></i> 
+    <% end %>
+  <% end %>
+</div>

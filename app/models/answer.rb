@@ -6,4 +6,9 @@ class Answer < ActiveRecord::Base
 
   validates :content, :presence => true 
 
+  def sum_votes
+    p "@@@@@@@@@@@@@@@@@"
+    votes.inject(0){ |sum, vote| sum += vote.value }
+  end
+
 end

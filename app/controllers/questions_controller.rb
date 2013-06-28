@@ -22,11 +22,11 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id].to_i)
+    @question = Question.find(params[:id])
   end
 
   def show
-    @question = Question.find(params[:id].to_i)
+    @question = Question.find(params[:id])
   end
 
   def update

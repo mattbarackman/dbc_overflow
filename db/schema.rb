@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130627182608) do
 
   create_table "answers", :force => true do |t|
-    t.string   "content"
+    t.string   "content",     :null => false
     t.integer  "question_id"
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20130627182608) do
   end
 
   create_table "questions", :force => true do |t|
-    t.string   "title"
+    t.string   "title",      :null => false
     t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130627182608) do
   end
 
   create_table "votes", :force => true do |t|
+    t.integer  "value"
     t.integer  "user_id"
     t.integer  "voteable_id"
     t.string   "voteable_type"

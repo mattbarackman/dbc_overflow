@@ -8,5 +8,8 @@ class Question < ActiveRecord::Base
                     :uniqueness => true
 
   
-
+  def sum_votes
+    p "@@@@@@@@@@@@@@@@@@@@@@@@"
+    p votes.inject(0){ |sum, vote| sum += vote.value }
+  end
 end
