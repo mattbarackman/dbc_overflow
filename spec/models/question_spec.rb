@@ -15,7 +15,7 @@ describe Question do
   end
 
   it "has a user associated to each question" do
-    pending
+    expect(question).to respond_to(:user)
   end
 
   it "has a tag" do

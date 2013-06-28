@@ -70,5 +70,26 @@ describe User do
       end
     end
   end
- 
+
+  describe "voting and questions" do
+    let(:other_user) { FactoryGirl.create(:user) }
+    let(:question) { FactoryGirl.create(:question) }
+    
+    context "upvote" do
+      
+      it "should increase the users vote count" do
+        expect{ other_user.upvote!(question)}.to change{other_user.votes.count}.from(0).to(1)
+      end
+
+      it "should increase the questions vote count" do
+        expect{ other_user.upvote!(question)}.to change{question.votes.count}.from(0).to(1)
+      end
+    end
+
+    # context "downvote" do
+    #   it "should decrease the user's vote count" do
+    #     expect { other_user.downvote!(question) }.to change{user.votes.count}.by(1)
+    #   end
+    # end
+  end
 end

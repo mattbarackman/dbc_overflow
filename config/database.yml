@@ -2,9 +2,7 @@
 development:
   adapter: postgresql
   database: dbc_overflow_development
-  username: apprentice
 
 test:
   adapter: postgresql
   database: dbc_overflow_test
-  username: apprentice

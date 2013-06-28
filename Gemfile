@@ -29,7 +29,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'debugger'
-
+  gem 'faker'
 end
 
 group :development do
