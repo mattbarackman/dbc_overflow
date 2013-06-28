@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :question do
-    title "EE hurts your soul."
+    title Faker::Lorem.sentence
     content "High five"
   end
 end

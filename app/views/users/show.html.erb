@@ -7,13 +7,21 @@
   <%= link_to "Delete", user_path, :method => "delete" %>
 </div>
 
-<% @user.questions.each do |q| %>
-<% @question = q %>
-<%= render "question" %>
-<% end %>
+<div class="questions">
+  <h1>Questions</h1>
+  <ul class="questions">
+  <% @user.questions.each do |q| %>
+    <li><a href="/questions/<%= q.id %>"><%= q.content %></a></li>
+  <% end %>
+  </ul>
+</div>
 
-<% @user.answers.each do |a| %>
-<% @answer = a %>
-<%= render "answer" %>
-<% end %>
 
+<div class="answers">
+  <h1>Answers</h1>
+  <ul class="answers">
+    <% @user.answers.each do |a| %>
+    <li><%= a.content %></li>
+    <% end %>
+  </ul>
+</div>

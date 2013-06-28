@@ -1,6 +1,27 @@
 <div class="show_post">
+<div class="current_votes"> <%= @question.votes.count %></div>
 <div class="post_title"><%= @question.title %></div>
 <div class="post_body"><%= @question.content %></div>
 <%= link_to "Answer Question", new_question_answer_path(@question) %>
 </div>
+
+<div class="answers">
+  <h1>Answers</h1>
+  <ul class="answers">
+    <% @question.answers.each do |answer| %>
+    <li><%= answer.content %></li>
+    <div class="voting">
+        <% if current_user %>
+          <%= form_for(current_user.votes.build(:voteable_id => answer.id, :voteable_type => 'answer'), remote: true) do |f| %>
+            <%= f.hidden_field :id, value: answer.id %>
+            <%= f.hidden_field :resource, value: answer.class.to_s %>
+            <%= f.submit "Upvote!", :class => "upvote" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="votes">
+        <%= answer.votes.count %>
+      </div>
+    <% end %>
+  </ul>
 

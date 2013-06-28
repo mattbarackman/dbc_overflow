@@ -13,10 +13,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    unless current_user == User.find(params[:id])
+    unless current_user
       flash[:errors] = ["You can't access another user's pages"]
       redirect_to :back # halts request cycle
     end
   end
+
+  helper_method :current_user
 
 end
