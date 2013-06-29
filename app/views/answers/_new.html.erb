@@ -1,0 +1,9 @@
+<%= form_for [question, answer], :remote => true, :html => {:id => "create_answer"} do |f| %>
+  <%= f.label :answer %>
+  <%= f.text_field :content %>
+
+  <%= f.submit %>
+
+<% end %>
+
+

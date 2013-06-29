@@ -5,26 +5,17 @@
   
   <%= render partial: "shared/voting", locals: {voteable: @question} %>
 
-  <%= link_to "Answer Question", new_question_answer_path(@question) %>
+  <%= link_to "Answer Question", new_question_answer_path(@question), :remote=>true, :method=> 'get', :class => "answer" %>
+  <div id="answer_form"></div>
 </div>
 
 <div class="answers">
   <h1>Answers</h1>
-  <ul class="answers">
+  <ul id="answer_list" class="answers">
     <% @question.answers.each do |answer| %>
 
-    <li><%= answer.content %></li>
-
-    <%= render partial: "shared/voting", locals: {voteable: answer} %>
-    
-
-    <%= link_to winner_path(winner_id: answer.id, question_id: @question.id), :remote=>true, :method=> 'post', :class => "winner" do %>
-      <% if @question.winner == answer.id %>
-        <i class="icon-star icon-3x"></i> 
-      <% else %>
-       <i class="icon-star-empty icon-3x"></i>
-      <% end %> 
-    <% end %>
+      <%= render partial: "shared/answer", locals: {question: @question,
+                                                    answer: answer } %>
 
     <% end %>
   </ul>
