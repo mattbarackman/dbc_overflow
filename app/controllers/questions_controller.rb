@@ -1,10 +1,11 @@
 class QuestionsController < ApplicationController
+  
 
   before_filter :load_current_user
   before_filter :authorize, :except => [:index, :show]
 
   def index
-    @questions = Question.all
+    p @questions = Question.all
   end
 
   def new
@@ -45,7 +46,7 @@ class QuestionsController < ApplicationController
     question = Question.find(params[:question_id])
     question.winner = params[:winner_id]
     question.save
-    render :text => "200"
+    render :json => owner(question).to_json
   end
 
   private

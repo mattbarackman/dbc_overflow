@@ -5,7 +5,9 @@ class VotesController < ApplicationController
     vote = Vote.find_or_create_by_user_id_and_voteable_id_and_voteable_type(voteable_type: params[:voteable_type],
                 voteable_id: params[:voteable_id],
                 user_id: current_user.id)
-    vote.update_attributes(value: params[:value])
+    vote_value = 1 if params[:value] == "1"
+    vote_value = -1 if params[:value] == "-1"
+    vote.update_attributes(value: vote_value)
 
     post = params[:voteable_type].classify.constantize.find(params[:voteable_id])
     vote.save
