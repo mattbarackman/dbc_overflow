@@ -1,18 +1,7 @@
 <div id="main_title"> Young Boot Questions </div>
   <div id="homepage_title_container">
     <% @questions.each do |question| %>
-      <div class="voting">
-        <% if current_user %>
-          <%= form_for(current_user.votes.build(:voteable_id => question.id, :voteable_type => 'question'), remote: true) do |f| %>
-            <%= f.hidden_field :id, value: question.id %>
-            <%= f.hidden_field :resource, value: question.class.to_s %>
-            <%= f.submit "Upvote!", :class => "upvote" %>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="votes">
-        <%= question.votes.count %>
-      </div>
+      <%= render partial: 'shared/voting', locals: {voteable: question} %>
       <div class="homepage_titles">
         <%= link_to question.title, question_path(question) %>
       </div>

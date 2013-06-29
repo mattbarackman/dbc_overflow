@@ -2,6 +2,8 @@ DbcOverflow::Application.routes.draw do
   
   resources :users
 
+  match "questions/:question_id/winner/:winner_id", to: "questions#winner", via: :post, as: :winner
+
   resources :questions, :only => [:new, :create, :show, :index] do
     resources :answers, :only => [:show, :index, :new, :create]
   end
@@ -11,9 +13,7 @@ DbcOverflow::Application.routes.draw do
 
   match "/signup", to: "users#new"
   match "/signin", to: "sessions#new"
-  match "/signout", to: "sessions#destroy", via: :delete
-
- 
+  match "/signout", to: "sessions#destroy", via: :delete 
 
   root :to => 'questions#index'
 

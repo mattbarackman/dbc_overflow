@@ -8,14 +8,7 @@ class VotesController < ApplicationController
     vote.update_attributes(value: params[:value])
 
     post = params[:voteable_type].classify.constantize.find(params[:voteable_id])
-    p vote
-    p params
-    p "POST #{post}"
-    p "POST votes #{post.sum_votes}"
-
     vote.save
-    p "controller @@@@@@@@@@@@@@@"
-    p post.sum_votes
     render :json => post.sum_votes.to_json
   end
 end

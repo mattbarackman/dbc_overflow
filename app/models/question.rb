@@ -2,14 +2,16 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers
   has_many :votes, as: :voteable
-  attr_accessible :title, :content
-  
+  attr_accessible :title, :content, :winner 
   validates :title, :presence => true, 
                     :uniqueness => true
-
   
   def sum_votes
-    p "@@@@@@@@@@@@@@@@@@@@@@@@"
-    p votes.inject(0){ |sum, vote| sum += vote.value }
+    return 0 if votes.empty?
+    votes.inject(0){ |sum, vote| sum += vote.value }
+  end
+
+  def get_winner
+    Answer.find(winner)
   end
 end

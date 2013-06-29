@@ -41,6 +41,13 @@ class QuestionsController < ApplicationController
     redirect_to root_path
   end
 
+  def winner
+    question = Question.find(params[:question_id])
+    question.winner = params[:winner_id]
+    question.save
+    render :text => "200"
+  end
+
   private
 
   def load_current_user
