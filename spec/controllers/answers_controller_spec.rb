@@ -1,10 +1,14 @@
 require 'spec_helper'
 
-describe AnswersController do
+describe AnswersController, :type => :feature do
 
   let(:user) { create(:user) }
   let!(:question) { create(:question) }
   let(:answer) { create(:answer, question: question, user: user) } 
+
+  before do
+    sign_in(user)
+  end
 
   describe "GET #index" do
     it "gets all the answers" do
@@ -20,10 +24,6 @@ describe AnswersController do
 
   describe "GET #new" do
 
-    before do
-      session[:user_id] = user.id
-    end
-
     it "assigns new answer to @answer" do
       get :new, :question_id => question.id
       assigns(:answer).should be_an_instance_of(Answer)
@@ -36,10 +36,6 @@ describe AnswersController do
 
   describe "POST #create" do
 
-    before do
-      session[:user_id] = user.id
-    end
-
     context "with valid attributes" do
       it "should save answer to database" do
         expect {
@@ -48,42 +44,37 @@ describe AnswersController do
       end
       it "should redirect to answer show profile" do
         post :create, question_id: question.id, answer: attributes_for(:answer)
-        p "*********************************************************"
-        p post
-        p answer
-        response.should render_template :index
+        response.should redirect_to(question_answers_path(question))
       end
     end
 
     context "with invalid attributes" do
-      xit "should not save answer to database" do
-        invalid_answer = build(:answer, :answer => "")
-        expect {
-          post :create, invalid_answer: attributes_for(:answer) 
-        }.to_not change(Answer, :count).by(1)
+      let(:invalid_attributes) { attributes_for(:answer, question: question, user: user, content: "") }
+
+      it "should not save answer to database" do
+        expect { post :create, question_id: question.id, answer: invalid_attributes
+              }.to_not change(Answer, :count).by(1)
       end
-      xit "should render the new form again" do
-        invalid_answer = build(:answer, :answer => "")
-        post :create, invalid_answer: attributes_for(:answer)
-        response.should render_template :new
+      it "should render the new form again" do
+        post :create, question_id: question.id, answer: invalid_attributes
+        response.should redirect_to(question_path(question))
       end
     end
   end
 
+  describe "user login/answer" do
 
-  # describe "user login/answer" do
-  #   xit "can create answer if logged in" do
-  #     sign_in(user)
-  #     expect { post :create, :question_id => question, answer: attributes_for(:answer) }.to change(Answer, :count).by(1)
-  #   end
-  # end
+    it "can create answer if logged in" do
+      expect { post :create, :question_id => question.id, answer: attributes_for(:answer) }.to change(Answer, :count).by(1)
+    end
+  end
 
-  # describe "user cannot answer question if not logged in" do
-  #   xit "cannot create answer if not logged in" do
-  #     sign_in(user)
-  #     sign_out
-  #     expect { post :create, :question_id => question, answer: attributes_for(:answer) }.to_not change(Answer, :count).by(1) 
-  #   end
-  # end
+  describe "user cannot answer question if not logged in" do
+    it "cannot create answer if not logged in" do
+      request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/new'
+      sign_out
+      expect { post :create, :question_id => question.id, answer: attributes_for(:answer) }.to_not change(Answer, :count).by(1) 
+    end
+  end
 
 end
