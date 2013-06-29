@@ -1,7 +1,11 @@
 $(document).ready(function(){
 
  $('.vote').on('ajax:success', function(e, data, status){
-    $(this).siblings('.votecount').text(data)
+    $(this).siblings('.votecount').text(data);
+    });
+
+  $('#answer_list').on('ajax:success', '.answer_vote', function(e, data, status){
+    $(this).siblings('.votecount').text(data);
     });
 
   $('.winner').on('ajax:success', function(e, data, status){

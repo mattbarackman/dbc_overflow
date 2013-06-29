@@ -1,11 +1,12 @@
 <div class="show_post">
-  
-  <div class="post_title"><%= @question.title %></div>
-  <div class="post_body"><%= @question.content %></div>
-  
-  <%= render partial: "shared/voting", locals: {voteable: @question} %>
-
   <%= link_to "Answer Question", new_question_answer_path(@question), :remote=>true, :method=> 'get', :class => "answer" %>
+ 
+  <div class="post_title"><%= @question.title %></div>
+  <div class="post_body">
+    <%= @question.content %>
+    <%= render partial: "shared/question_voting", locals: {voteable: @question} %>
+  </div>
+
   <div id="answer_form"></div>
 </div>
 
