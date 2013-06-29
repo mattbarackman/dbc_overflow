@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :vote do
-    
+    user
+    voteable
   end
 end

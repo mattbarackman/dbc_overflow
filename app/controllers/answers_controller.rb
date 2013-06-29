@@ -3,11 +3,11 @@ class AnswersController < ApplicationController
   before_filter :require_user, :only => [:new, :create]
 
   def new
-    p params
-    p session[:user_id]
+    # p params
+    # p session[:user_id]
     if session[:user_id]
       @question = Question.find(params[:question_id].to_i)
-      p @question
+      # p @question
       @answer = Answer.new
       # debugger
     else
@@ -30,9 +30,13 @@ class AnswersController < ApplicationController
   end
 
   def index
-    p params
     @question = Question.find(params[:question_id])
+    @answers = @question.answers
     
+  end
+
+  def show
+
   end
 
 end
