@@ -1,11 +1,16 @@
-<li><%= answer.content %></li>
+<div class="answer">
 
-<%= render partial: "shared/voting", locals: {voteable: answer} %>
-
-<%= link_to winner_path(winner_id: answer.id, question_id: question.id), :remote => true, :method=> 'post', :class => "winner" do %>
-  <% if question.winner == answer.id %>
+  <li>
+    <%= link_to winner_path(winner_id: answer.id, question_id: question.id), :remote => true, :method=> 'post', :class => "winner" do %>
+    <% if question.winner == answer.id %>
     <i class="icon-star icon-3x"></i> 
-  <% else %>
-   <i class="icon-star-empty icon-3x"></i>
-  <% end %> 
-<% end %>
+    <% else %>
+    <i class="icon-star-empty icon-3x"></i>
+    <% end %>   
+    <%= render partial: "shared/voting", locals: {voteable: answer} %>
+    <p><%= answer.content %></p>
+
+  </li>
+
+  <% end %>
+</div>

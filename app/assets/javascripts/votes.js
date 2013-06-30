@@ -8,12 +8,11 @@ $(document).ready(function(){
     $(this).siblings('.votecount').text(data);
     });
 
-  $('.winner').on('ajax:success', function(e, data, status){
-    if (data == true){
-    $('.winner > i').removeClass().addClass('icon-star-empty icon-3x')
+  $('#answer_list').on('ajax:success', '.winner', function(e, data, status){
+    if (data === true){
+    $('.winner > i').removeClass().addClass('icon-star-empty icon-3x');
     $(this).find('i').removeClass('icon-star-empty');
     $(this).find('i').addClass('icon-star');
     }
   });
-  
 });

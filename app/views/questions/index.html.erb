@@ -2,8 +2,12 @@
   <div id="homepage_title_container">
     <% @questions.each do |question| %>
       <div class="homepage_titles">
-        <%= render partial: 'shared/question_voting', locals: {voteable: question} %>
+        <% if current_user %>
+          <%= render partial: 'shared/question_voting', locals: {voteable: question} %>
+        <% end %>
+        <div class="question">
         <%= link_to question.title, question_path(question)%>
+        </div>
       </div>
       <% end %>
   </div>

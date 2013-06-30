@@ -1,25 +1,24 @@
 <div class="show_post">
-  <%= link_to "Answer Question", new_question_answer_path(@question), :remote=>true, :method=> 'get', :class => "answer" %>
- 
   <div class="post_title"><%= @question.title %></div>
   <div class="post_body">
-    <%= @question.content %>
     <%= render partial: "shared/question_voting", locals: {voteable: @question} %>
+    <%= @question.content %>
   </div>
 
-  <div id="answer_form"></div>
-</div>
+   <div id="answer_form"></div>
+
+<%= link_to "Answer Question", new_question_answer_path(@question), :remote=>true, :method=> 'get', :class => "answer_button" %>
 
 <div class="answers">
   <h1>Answers</h1>
   <ul id="answer_list" class="answers">
     <% @question.answers.each do |answer| %>
 
-      <%= render partial: "shared/answer", locals: {question: @question,
-                                                    answer: answer } %>
+    <%= render partial: "shared/answer", locals: {question: @question,
+      answer: answer } %>
 
-    <% end %>
-  </ul>
+      <% end %>
+    </ul>
 
 
 

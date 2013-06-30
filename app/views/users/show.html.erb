@@ -7,6 +7,21 @@
   <%= link_to "Delete", user_path, :method => "delete" %>
 </div>
 
+<div class="stats">
+  <table>
+    <tr>
+      <th>Question Votes</th>
+      <th>Answer Votes</th>
+      <th>Favorited Answers</th>
+    </tr>
+    <tr>
+      <td><%= @user.sum_question_votes %></td>
+      <td><%= @user.sum_answer_votes %></td>
+      <td><%= @user.favorited_answers_count %></td>
+    </tr>
+  </table>
+</div>
+
 <div class="questions">
   <h1>Questions</h1>
   <ul class="questions">

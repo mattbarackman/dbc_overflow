@@ -42,10 +42,6 @@ describe AnswersController, :type => :feature do
           post :create, question_id: question.id, answer: attributes_for(:answer) 
         }.to change(Answer, :count).by(1)
       end
-      it "should redirect to answer show profile" do
-        post :create, question_id: question.id, answer: attributes_for(:answer)
-        response.should redirect_to(question_answers_path(question))
-      end
     end
 
     context "with invalid attributes" do

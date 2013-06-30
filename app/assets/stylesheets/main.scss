@@ -52,17 +52,16 @@ body{
   }
 }
 
-.images{
-  width: 100%;
-  img{
-    display: block;
-    float: right;
-    margin-right: 20%;
-  }
+.images {
+  float:right;
+  img {
+  display:block;
+  margin: 50px auto;
+ }
 }
 
 
-h2{
+h2 {
   color: #000;
   font-size: 30px;
   margin: 0;
@@ -101,82 +100,116 @@ h2{
 }
 
 #homepage_title_container{
-  width: 40%;
+  width: 50%;
+  margin-left: 20%;
   float: left;
 }
 
 .homepage_titles{
-  font-size: 19px;
-  margin: 10px 55%;
-  background-color: $navy_blue;
-  border-radius: 5px;
-  border: 1px solid $green_sea;
-  padding: 5px;
-  width: 300px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
+
+  width: 50%;
+  height: 75px;
   color: $light_gray;
+
   
   a{
     text-decoration: none;
     color: $light_gray;
     }
 
-  &:hover{
-    background-color: $green_sea;
-    cursor: pointer;
-  }
   .voting{
     background-color: $main_green;
     float:left;
     width: 100px;
     padding: 5px 10px;
     border-radius: 5px;
-    margin-left: -150px;
-    margin-top: -5px;
+    margin-top: 25px;
+  }
+  .question {
+    font-size: 19px;
+    float: right;
+    background-color: $navy_blue;
+    border-radius: 5px;
+    border: 1px solid $green_sea;
+    padding: 5px;
+    width: 50%;
+    height: 50px;
+    margin-top: 10px;
+    line-height: 50px;
+    text-align: center;
+    &:hover{
+      background-color: $green_sea;
+      cursor: pointer;
+  }
   }
 }
 
+
+
 .show_post{
   width: 100%;
-  padding: 50px;
+  padding: 50px 0 0 400px;
+
   .post_title{
-    text-align: center;
     font-size: 70px;
   }
   .post_body{
-    width: 400px;
-    margin: 0px auto;
+    width: 50%;
     margin-top: 50px;
+    margin-bottom: 50px;
     padding: 40px;
-    text-align: center;
     font-size: 20px;
     background-color: $green_sea;
     color: $light_gray;
 
     .voting{
       background-color: $main_green;
-      float:left;
-      width: 150px;
+      width: 120px;
+      margin-right: 30px;
       padding: 5px 10px;
       border-radius: 5px;
-      margin-left: -250px;
-      margin-top: -16px;
+      display: inline-block;
+    }
+    .question {
+      display: inline-block;
     }
   }
 }
 
-.answer{
-  top: 80px;
+.answer_button{
+  margin-top: 200px;
   background-color: $navy_blue;
   padding: 20px;
   color: #fff;
   font-size: 20px;
+  line-height: 64px;
   &:hover{
     text-decoration: none;
     color: $light_gray;
   }
 }
 
+.answers{
+  margin-top: 60px;
+  margin-left: 0px;
+}
 
+.answer {
+  li {
+    padding: 10px;
+    margin: 10px;
+    margin-left: 0px;
+    width: 50%;
+    
+    list-style-type: none;
+    background-color: lightgray;
+  }
+  .winner {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .voting {
+    display: inline-block;
+    float: right;
+  }
+}

@@ -1,6 +1,4 @@
-<div class="voting">
-  <% if current_user %>
-    
+<div class="voting">    
     <%= link_to votes_path(voteable_id: voteable.id, voteable_type: voteable.class, value: 1), :remote=>true, :method=> 'post', :class => "vote" do %>
       <i class="icon-thumbs-up icon-2x"></i> 
     <% end %>
@@ -9,5 +7,4 @@
       <i class="icon-thumbs-down icon-2x"></i> 
       
     <% end %>
-  <% end %>
 </div>
