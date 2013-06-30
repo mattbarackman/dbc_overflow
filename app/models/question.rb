@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
   has_many :votes, as: :voteable
   attr_accessible :title, :content, :winner 
   validates :title, :presence => true, 
-                    :uniqueness => true
+  :uniqueness => true
   
   def sum_votes
     return 0 if votes.empty?
@@ -13,5 +13,12 @@ class Question < ActiveRecord::Base
 
   def get_winner
     Answer.find(winner)
+  end
+
+  def current_user_is_owner?
+    if current_user
+      return true if current_user.id == user_id
+    end
+    false
   end
 end

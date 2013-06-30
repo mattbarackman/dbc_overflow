@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :require_user, only: [:edit, :update, :destroy]
-
-  def index
-  end
+  before_filter :find_user, only: [:show, :edit, :update]
 
   def new
     @user = User.new
@@ -14,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "Welcome to DBC Overflow!"
       sign_in(@user)
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user)
     else
       flash[:errors] = @user.errors.full_messages
       render :new
@@ -22,18 +20,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update_attributes(params[:user])
-
-    if @user.save
+    if @user.update_attributes(params[:user])
       flash[:success] = "Your profile has been edited!"
       redirect_to user_path(@user.id)
     else
@@ -47,6 +42,12 @@ class UsersController < ApplicationController
     sign_out
     User.destroy(params[:id])
     redirect_to new_user_path
+  end
+
+  private
+
+  def find_user
+    @user = User.find(params[:id])
   end
 
 end

@@ -32,8 +32,11 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    @question.update_attributes(params[:question])
-    redirect_to question_path(@question)
+    if @question.update_attributes(params[:question])
+      redirect_to question_path(@question)
+    else
+      flash[:errors] = ["Your question was not updated"]
+    end
   end
 
   def destroy
@@ -46,7 +49,8 @@ class QuestionsController < ApplicationController
     question = Question.find(params[:question_id])
     question.winner = params[:winner_id]
     question.save
-    render :json => owner(question).to_json
+    render :json => question.current_user_is_owner?.to_json
+    # render :json => owner(question).to_json
   end
 
   private
@@ -56,9 +60,10 @@ class QuestionsController < ApplicationController
   end
 
   def authorize
-    unless @user == current_user
-      redirect_to root_path
-      flash[:error] = "not authorized user"
-    end
+    require_user(root_path)
+    # unless @user == current_user
+    #   redirect_to root_path
+    #   flash[:error] = "not authorized user"
+    # end
   end
 end

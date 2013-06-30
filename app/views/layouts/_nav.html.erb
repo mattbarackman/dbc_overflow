@@ -5,6 +5,6 @@
   <%= link_to "Profile", user_path(current_user) if current_user %>
   <%= link_to "Sign Out", signout_path, method: "delete" if current_user%>
     <%= link_to 'New post', new_question_path if current_user %>
-  <%#= link_to 'Edit post', edit_user_question_path(@user, @question) if @question && owner(@question)%>
-  <%#= link_to 'Delete post', user_question_path(@user, @question), method: :delete if @question && owner(@question)%>
+  <%#= link_to 'Edit post', edit_user_question_path(@user, @question) if @question && @question.current_user_is_owner? %>
+  <%#= link_to 'Delete post', user_question_path(@user, @question), method: :delete if @question && @question.current_user_is_owner? %>
 </nav>

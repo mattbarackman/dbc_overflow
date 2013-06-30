@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  include SessionsHelper
-  include QuestionsHelper
+  helper :session
+
+  include SessionHelper
 
   private
 
@@ -13,10 +14,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_user
+  def require_user(location = :back)
     unless current_user
       flash[:errors] = ["You can't access another user's pages"]
-      redirect_to :back # halts request cycle
+      redirect_to location # halts request cycle
     end
   end
 
