@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
                                                                         :answer => @answer})}
     else
       flash[:notice] = "Please log in first."
-      redirect_to question_path(@question)
+      redirect_to @question
     end
   end
 
@@ -24,6 +24,8 @@ class AnswersController < ApplicationController
       render :json => {:answer_template => render_to_string(:partial => 'shared/answer',
                                                             :locals => {:question => @question,
                                                                         :answer => @answer})}
+    else 
+      redirect_to @question
     end
   end
 

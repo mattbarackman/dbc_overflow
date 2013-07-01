@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(params[:question])
     @question.user_id = current_user.id
     if @question.save
-      redirect_to question_path(@question)
+      redirect_to @question
     else
       render :new
     end
@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if @question.update_attributes(params[:question])
-      redirect_to question_path(@question)
+      redirect_to @question
     else
       flash[:errors] = ["Your question was not updated"]
     end
