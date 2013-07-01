@@ -1,66 +1,41 @@
 require 'spec_helper'
- 
+
 describe User do
- 
+
   let(:name)   { "Tom Jones" }
   let(:email)   { "tom@jones.com" }
   let(:password)   { "tomtom" }
-  let(:user) { user1 = User.create(name: name, 
-                               email: email)
-               user1.password = password
-               user1.password_confirmation = password
-               user1.save
-               user1
-             }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:user2) { FactoryGirl.build(:user, password_confirmation: "hey") }
 
- 
   describe "#initialize" do
     it "requires a name" do
-      expect(User.new(email:email, 
-                       password: password,
-                       password_confirmation: password).valid?).to be_false
+      should validate_presence_of(:name)
     end
 
-    it "requires a valid email" do
-      expect(User.new(name: name,
-                      email: "hi!", 
-                      password: password,
-                      password_confirmation: password).valid?).to be_false
+    it "will not allow an invalid email" do
+      should_not allow_value("blah").for(:email)
     end
 
-    it "requires a valid password" do
-      expect(User.new(name: name,
-                      email: email, 
-                      password: "p",
-                      password_confirmation: "p").valid?).to be_false
+    it "will allow valid email" do
+      should allow_value("blah@blah.com").for(:email)
+    end
+
+    it "won't allow a password less than 5 letters" do
+      should_not allow_value("blah").for(:password)
+    end
+
+    it "allows a password that is more than 5 letters" do
+      should allow_value("blahbla").for(:password)
     end
 
     it "requires password to match password_confirmation" do
-      expect(User.new(name: name,
-                      email: email, 
-                      password: password,
-                      password_confirmation: "123456").valid?).to be_false
-    end
-
-    it "has a name" do
-      expect(user.name).to_not be_nil
-    end
-
-    it "sets the name to the name passed in on initialize" do
-      expect(user.name).to eq name
-    end
-
-    it "has an email" do
-      expect(user.email).to_not be_nil
-    end
-
-    it "sets the email to the email passed in on initialize" do
-      expect(user.email).to eq email
+      expect(user2.valid?).to be_false
     end
 
     context "with valid password" do
       it "authenticates the user" do
-        expect(user.authenticate(password)).to be user
+        expect(user.authenticate(user.password)).to be user
       end
     end
 
@@ -76,9 +51,8 @@ describe User do
     let(:question) { FactoryGirl.create(:question) }
     
     context "upvote" do
-      
+
       it "should increase the users vote count" do
-        p question
         expect{ other_user.upvote!(question)}.to change{other_user.votes.count}.from(0).to(1)
       end
 

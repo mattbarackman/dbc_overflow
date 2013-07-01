@@ -2,21 +2,18 @@ require 'spec_helper'
 
 describe UsersController do
 
-  describe "the signup process", :js => true, :type => :feature do
-    before :each do
-      User.create(:name => 'maria',
-        :email => 'maria@maria.com', 
-        :password => 'mariamaria',
-        :password_confirmation => 'mariamaria')
-    end
+  let(:user1) {FactoryGirl.create(:user)}
+  let(:user2) {FactoryGirl.build(:user)}
+
+  describe "the signup process", :js => false, :type => :feature do
 
     it "allows valid signups" do
       visit signup_path
       within('form') do
-        fill_in 'user_name', :with => 'baria'
-        fill_in 'user_email', :with => 'baria@maria.com'
-        fill_in 'user_password', :with => 'mariamaria'
-        fill_in 'user_password_confirmation', :with => 'mariamaria'
+        fill_in 'user_name', :with => user2.name 
+        fill_in 'user_email', :with => user2.email
+        fill_in 'user_password', :with => user2.password
+        fill_in 'user_password_confirmation', :with => user2.password
         click_button 'Create User'
       end
       expect(page).to have_content 'Welcome to DBC Overflow!'
@@ -25,10 +22,10 @@ describe UsersController do
     it "does not allow invalid signups" do
       visit signup_path
       within('form') do
-        fill_in 'user_name', :with => 'maria'
-        fill_in 'user_email', :with => 'maria@maria.com'
-        fill_in 'user_password', :with => 'mariamaria'
-        fill_in 'user_password_confirmation', :with => 'mariamaria'
+        fill_in 'user_name', :with => user1.name
+        fill_in 'user_email', :with => user1.email
+        fill_in 'user_password', :with => user1.password
+        fill_in 'user_password_confirmation', :with => user1.password
         click_button 'Create User'
       end
       expect(page).to_not have_content 'Welcome to DBC Overflow!'
