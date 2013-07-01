@@ -8,14 +8,16 @@
     <i class="icon-star-empty icon-3x"></i>
     <% end %>   
     <%= render partial: "shared/voting", locals: {voteable: answer} %>
-    <p><%= answer.content %></p>
-    <% if answer.user %>
+    <div class="answer_content">
+      <p><%= answer.content %></p>
+      <% if answer.user %>
       <p>From: <%= answer.user.name %></p>
-    <% else %>
+      <% else %>
       <p>From: [Deleted Account]</p>
-    <% end %>
+      <% end %>
+    </div>
     <div class="delete_button_div">
-    <%= link_to "Delete Answer", [question, answer], :method=> 'delete', :class => "delete_button" if answer.user == current_user%>
+      <%= link_to "Delete Answer", [question, answer], :method=> 'delete', :class => "delete_button small" if answer.user == current_user%>
     </div>
 
   </li>

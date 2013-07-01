@@ -3,6 +3,6 @@
   <p><%= comment.body %></p>
   <p>From: <%= comment.user.name %></p>
   <div class="delete_button_div small">
-    <%= link_to "Delete Comment", comment, :method=> 'delete', :class => "delete_button" if comment.user == current_user%>
+    <%= link_to "Delete Comment", comment, :method=> 'delete', :class => "delete_button small" if comment.user == current_user%>
   </div>
 </div> 

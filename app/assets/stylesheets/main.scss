@@ -310,6 +310,14 @@ table {
     line-height: 64px;
     color: #333;
 
+    &.small{
+      font-size: 16px;
+      line-height: 16px;
+      padding: 5px;
+      color: black;
+      margin-top: 0;
+    }
+
 
     &:hover{
       text-decoration: none;
@@ -336,4 +344,9 @@ table {
 }
 .stats {
   margin-bottom: 30px;
+}
+
+.answer_content {
+  margin-top: 10px;
+  font-size: 16px;
 }
