@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper :session
+  include ActionView::Helpers::SessionHelper
 
-  include SessionHelper
+  def current_user
+    User.find(session[:user_id]) if session[:user_id]
+  end
 
-  private
+  helper_method :current_user
 
   def require_login
     unless logged_in?
@@ -20,7 +22,5 @@ class ApplicationController < ActionController::Base
       redirect_to location # halts request cycle
     end
   end
-
-  helper_method :current_user
 
 end

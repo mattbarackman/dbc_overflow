@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   attr_accessible :title, :content, :winner 
   validates :title, :presence => true, 
   :uniqueness => true
-  
+
   def sum_votes
     return 0 if votes.empty?
     votes.inject(0){ |sum, vote| sum += vote.value }
@@ -16,10 +16,4 @@ class Question < ActiveRecord::Base
     Answer.find(winner)
   end
 
-  def current_user_is_owner?
-    if current_user
-      return true if current_user.id == user_id
-    end
-    false
-  end
 end

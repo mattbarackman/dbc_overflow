@@ -19,14 +19,11 @@ class AnswersController < ApplicationController
     @answer = Answer.new(params[:answer])
     @question = Question.find(params[:question_id])
     @answer.user_id = current_user.id
-    @answer.question = @question
+    @answer.question_id = @question.id
     if @answer.save
       render :json => {:answer_template => render_to_string(:partial => 'shared/answer',
                                                             :locals => {:question => @question,
                                                                         :answer => @answer})}
-    else
-      flash[:error]= "Answer was not submitted"
-      redirect_to question_path(@question)
     end
   end
 
@@ -34,6 +31,12 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answers = @question.answers
     
+  end
+
+  def destroy
+    @answer = Answer.find(params[:id])
+    @answer.destroy
+    redirect_to :back
   end
 
 end

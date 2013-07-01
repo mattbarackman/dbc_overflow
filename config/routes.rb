@@ -4,8 +4,8 @@ DbcOverflow::Application.routes.draw do
 
   match "questions/:question_id/winner/:winner_id", to: "questions#winner", via: :post, as: :winner
 
-  resources :questions, :only => [:new, :create, :show, :index] do
-    resources :answers, :only => [:show, :index, :new, :create]
+  resources :questions, :only => [:new, :create, :show, :index, :destroy] do
+    resources :answers, :only => [:show, :index, :new, :create, :destroy]
   end
   
 

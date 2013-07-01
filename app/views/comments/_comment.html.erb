@@ -1,4 +1,8 @@
+
 <div class="comment">
   <p><%= comment.body %></p>
-  <p>comment by: <%= comment.user.name %></p>
+  <p>From: <%= comment.user.name %></p>
+  <div class="delete_button_div small">
+    <%= link_to "Delete Comment", comment, :method=> 'delete', :class => "delete_button" if comment.user == current_user%>
+  </div>
 </div> 

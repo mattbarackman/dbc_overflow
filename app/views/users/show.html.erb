@@ -1,11 +1,9 @@
 
-<div class="user_form">
-<h2>Your Profile</h2>
-  <%= @user.name %><br> 
-
-  <%= link_to "Edit", edit_user_path %>
-  <%= link_to "Delete", user_path, :method => "delete" %>
-</div>
+<h2><%= @user.name %>'s Profile</h2>
+<ul class="user_nav">
+  <li><%= link_to "Edit", edit_user_path %></li>
+  <li><%= link_to "Delete", user_path, :method => "delete" %></li>
+</ul>
 
 <div class="stats">
   <table>
@@ -22,21 +20,21 @@
   </table>
 </div>
 
-<div class="questions">
+<div class="user_questions">
   <h1>Questions</h1>
   <ul class="questions">
   <% @user.questions.each do |q| %>
-    <li><a href="/questions/<%= q.id %>"><%= q.content %></a></li>
+    <li><a href="/questions/<%= q.id %>"><%= q.title %> </a> <%= "(#{pluralize(q.sum_votes, 'vote')})"%> </li>
   <% end %>
   </ul>
 </div>
 
 
-<div class="answers">
+<div class="user_answers">
   <h1>Answers</h1>
-  <ul class="answers">
+  <ul class="user_answer">
     <% @user.answers.each do |a| %>
-    <li><%= a.content %></li>
+    <li>"<%= a.content %>" <%= "(#{pluralize(a.sum_votes, 'vote')})"%> on question: <%=link_to a.question.title, a.question%></li>
     <% end %>
   </ul>
 </div>

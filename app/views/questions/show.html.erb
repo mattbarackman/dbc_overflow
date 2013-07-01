@@ -5,11 +5,16 @@
     <div class="question_text"
       <p> <%= @question.content %> </p>
     </div>
-    <br>
+
+    <div class="delete_button_div">
+    <%= link_to "Delete Question", @question, :method=> 'delete', :class => "delete_button" if @question.user == current_user%>
+    </div>
   
     <div class="comment_button_div">
-    <%= link_to "Comment on Question", new_comment_path({:commentable_type => "Question", :commentable_id => @question.id}), :method=> 'get', :class => "comment_button" %>
+    <%= link_to "Comment on Question", new_comment_path({:commentable_type => "Question", :commentable_id => @question.id}), :remote=>true, :method=> 'get', :class => "comment_button" %>
     </div>
+    
+    <div id="comment_form"></div>
     <div class="question_comments"
       <ul>
         <%= render :partial => "comments/comment", :collection => @comments %>

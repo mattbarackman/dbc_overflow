@@ -13,7 +13,9 @@
     <%= render "layouts/nav" %>
   <div id="bg">
   </div>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
     <%= render 'layouts/errors' %>
     <%= render 'layouts/success' %>
 </body>
