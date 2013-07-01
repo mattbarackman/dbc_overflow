@@ -1,0 +1,11 @@
+<div class="user_form">
+
+  <%= form_for [@comment] do |f| %>
+    <%= f.label :comment %>
+    <%= f.text_area :body, placeholder: "Write your comment here." %>
+    <%= f.hidden_field :commentable_type, value: @commentable.class %>
+    <%= f.hidden_field :commentable_id, value: @commentable.id %>
+    <%= f.submit %>
+  <% end %>   
+
+</div>

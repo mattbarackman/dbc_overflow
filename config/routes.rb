@@ -8,8 +8,11 @@ DbcOverflow::Application.routes.draw do
     resources :answers, :only => [:show, :index, :new, :create]
   end
   
+
   resources :sessions, :only => [:new, :create, :destroy]
   resources :votes, :only => [:create]
+
+  resources :comments
 
   match "/signup", to: "users#new"
   match "/signin", to: "sessions#new"

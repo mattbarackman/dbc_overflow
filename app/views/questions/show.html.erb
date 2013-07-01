@@ -2,17 +2,34 @@
   <div class="post_title"><%= @question.title %></div>
   <div class="post_body">
     <%= render partial: "shared/question_voting", locals: {voteable: @question} %>
-    <%= @question.content %>
+    <div class="question_text"
+      <p> <%= @question.content %> </p>
+    </div>
+    <br>
+  
+    <div class="comment_button_div">
+    <%= link_to "Comment on Question", new_comment_path({:commentable_type => "Question", :commentable_id => @question.id}), :method=> 'get', :class => "comment_button" %>
+    </div>
+    <div class="question_comments"
+      <ul>
+        <%= render :partial => "comments/comment", :collection => @comments %>
+      </ul>
+    </div>
   </div>
 
-   <div id="answer_form"></div>
 
-<%= link_to "Answer Question", new_question_answer_path(@question), :remote=>true, :method=> 'get', :class => "answer_button" %>
+
+<h1>Answers</h1>
+
+<br>
+  <%= link_to "Answer Question", new_question_answer_path(@question), :remote=>true, :method=> 'get', :class => "answer_button" %>
+  <div id="answer_form"></div>
 
 <div class="answers">
-  <h1>Answers</h1>
+
+
   <ul id="answer_list" class="answers">
-    <% @question.answers.each do |answer| %>
+    <% @answers.each do |answer| %>
 
     <%= render partial: "shared/answer", locals: {question: @question,
       answer: answer } %>
@@ -20,5 +37,5 @@
       <% end %>
     </ul>
 
-
+</div>
 

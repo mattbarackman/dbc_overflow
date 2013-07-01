@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   before_filter :authorize, :except => [:index, :show]
 
   def index
-    p @questions = Question.all
+    @questions = Question.all
   end
 
   def new
@@ -28,6 +28,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @comments = @question.comments.order("created_at DESC")
+    @answers = @question.answers.order("created_at DESC")
   end
 
   def update

@@ -112,19 +112,21 @@ h2 {
   color: $light_gray;
 
   
+  .voting{
+    background-color: $main_green;
+    float: right;
+    width: 100px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-right: 0px;
+  }
+
   a{
     text-decoration: none;
     color: $light_gray;
     }
 
-  .voting{
-    background-color: $main_green;
-    float:left;
-    width: 100px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 25px;
-  }
   .question {
     font-size: 19px;
     float: right;
@@ -156,19 +158,37 @@ h2 {
   .post_body{
     width: 50%;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     padding: 40px;
     font-size: 20px;
     background-color: $green_sea;
     color: $light_gray;
 
+    .question_text {
+      background-color: #EFF;
+      color: #8AA;
+      clear: right;
+      margin-top: 100px;
+      padding: 5px;
+
+    }
+
     .voting{
       background-color: $main_green;
       width: 120px;
-      margin-right: 30px;
+      float: right;
       padding: 5px 10px;
       border-radius: 5px;
-      display: inline-block;
+      display: block;
+      
+      a:nth-of-type(2) {
+        float: right;
+      }
+
+      .votecount {
+        line-height: 40px;
+        margin-left: 10px;
+      }
     }
     .question {
       display: inline-block;
@@ -188,6 +208,8 @@ h2 {
     color: $light_gray;
   }
 }
+
+
 
 .answers{
   margin-top: 60px;
@@ -211,5 +233,36 @@ h2 {
   .voting {
     display: inline-block;
     float: right;
+  }
+}
+
+
+.comment_button_div {
+  margin-top: 40px;
+  margin-bottom: 40px;  
+}
+
+.comment_button{
+  background-color: $navy_blue;
+  padding: 20px;
+  color: #fff;
+  font-size: 20px;
+  line-height: 64px;
+  &:hover{
+    text-decoration: none;
+    color: $light_gray;
+  }
+}
+
+.comment {
+  background-color: #EFF;
+  padding: 5px;
+  margin-top: 10px; 
+  width: 100%;
+  color: #8AA;
+  font-size: 12px;
+
+  p {
+    margin: 0px;
   }
 }
